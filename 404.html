@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Menu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 1px solid white; 
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    select {
+      width: 200px;
+      padding: 5px;
+      border: 1px solid #ccc;
+    }
+
+    input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column; 
+      align-items: center; 
+    }
+
+    li {
+      display: block;
+      margin-bottom: 10px; 
+      position: relative;
+      border-top: 1px solid #ccc; 
+      padding-top: 10px; 
+    }
+
+    li:first-child {
+      border-top: none; 
+      padding-top: 0; 
+    }
+
+    li::before {
+      content: "";
+      position: absolute;
+      top: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #333;
+      visibility: hidden;
+    }
+
+    li:hover::before {
+      visibility: visible;
+    }
+
+    a {
+      text-decoration: none;
+      color: #333;
+      text-decoration: underline; 
+    }
+
+    #menu-visible {
+      display: block !important; 
+    }
+
+    .section {
+      display: none; 
+    }
+
+    .section.active {
+      display: block; 
+    }
+
+    .compras-section {
+      margin-top: 50px;
+    }
+
+    .compras-section hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 20px 0;
+    }
+
+    .compras-section h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var form = document.getElementById("login-form");
+      form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        document.getElementById("menu").style.display = "block";
+      });
+
+      var manutencaoLink = document.getElementById("manutencao-link");
+      manutencaoLink.addEventListener("click", function(event) {
+        event.preventDefault();
+        document.getElementById("manutencao-section").classList.add("active");
+      });
+
+      var limparBtn = document.getElementById("limpar-btn");
+      limparBtn.addEventListener("click", function(event) {
+        event.preventDefault();
+        document.getElementById("manutencao-form").reset();
+      });
+    });
+  </script>
+</head>
+<body>
+  <p><strong style="font-size: 5em;">E-Compras</strong></p>
+  <h1>Login</h1>
+  <form id="login-form" action="menu.html" method="post">
+    <label for="username">Usuário:</label>
+    <input type="text" id="username" name="username" required><br><br>
+    <label for="password">Senha:</label>
+    <input type="password" id="password" name="password" required><br><br>
+    <input type="submit" value="Entrar">
+  </form>
+
+  <ul id="menu">
+    <li><a href="#" id="manutencao-link">Manutenção</a></li>
+    <li><a href="#produtos_manutencao">Produtos com Manutenção</a></li>
+    <li><a href="#alterar_senha">Alterar Senha</a></li>
+    <li><a href="index.html">Sair</a></li>
+  </ul>
+
+  <div id="manutencao-section" class="section">
+    <h1>Manutenção</h1>
+    <form id="manutencao-form" action="#" method="post">
+      <label for="matricula">Matrícula(*):</label>
+      <input type="text" id="matricula" name="matricula" required><br><br>
+      <label for="login">Login(*):</label>
+      <input type="text" id="login" name="login" required><br><br>
+      <label for="nome">Nome(*):</label>
+      <input type="text" id="nome" name="nome" required><br><br>
+      <label for="senha">Senha(*):</label>
+      <input type="password" id="senha" name="senha" required><br><br>
+      <label for="confirmacao-senha">Confirmação de Senha(*):</label>
+      <input type="password" id="confirmacao-senha" name="confirmacao-senha" required><br><br>
+      <label for="orgao">Órgão(*):</label>
+      <select id="orgao" name="orgao" required>
+        <option value="orgao1">Órgão 1</option>
+        <option value="orgao2">Órgão 2</option>
+        <option value="orgao3">Órgão 3</option>
+      </select><br><br>
+      <label for="supervisor">Supervisor(*):</label>
+      <select id="supervisor" name="supervisor" required>
+        <option value="supervisor1">Supervisor 1</option>
+        <option value="supervisor2">Supervisor 2</option>
+        <option value="supervisor3">Supervisor 3</option>
+      </select><br><br>
+      <label for="situacao">Situação(*):</label>
+      <select id="situacao" name="situacao" required>
+        <option value="concluido">Concluído</option>
+        <option value="pendente">Pendente</option>
+        <option value="em_andamento">Em Andamento</option>
+      </select><br><br>
+      <p>Campo Obrigatório(*)</p>
+      <input type="submit" value="Enviar">
+      <input type="submit" value="Limpar" id="limpar-btn">
+    </form>
+  </div>
+
+  <div id="compras-section" class="section compras-section">
+    <hr>
+    <h1>Compras</h1>
+  </div>
+</body>
+</html>
